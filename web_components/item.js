@@ -57,7 +57,7 @@ class item extends HTMLElement{
                 height: auto;
             }
             .max-width {
-                max-width: 22rem;
+                max-width: 17rem;
             }
             .container {
                 background-color: #fff;
