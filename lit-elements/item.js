@@ -93,7 +93,7 @@ export class Item extends LitElement {
       precio: { type: Number },
       precio_real: { type: Number },
       calificacion: { type: Number },
-      decuento: { type: Number },
+      descuento: { type: Number },
       img: { type: String },
 
     }
