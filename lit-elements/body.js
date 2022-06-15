@@ -31,8 +31,11 @@ export class Body extends LitElement {
       max-width: 60rem;
     }
     .modal {
-      visibility: visible;
-      height: auto;
+      visibility: hidden;
+      height: 0;
+      position: fixed;
+      background: #fff;
+      padding-left: 2rem;
     }
     .header {
       display: flex;
@@ -72,11 +75,18 @@ export class Body extends LitElement {
     }
     .products {
       text-align: center;
+      margin: 5rem 0;
     }
     .products h2 {
       font-size: 5rem;
       margin: 2rem 0;
       font-weight: 900;
+    }
+    .products-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: center;
     }
     `
   }
@@ -93,10 +103,13 @@ export class Body extends LitElement {
     this.products = [];
   }
 
-  updated(changedProperties) {
-    if (changedProperties.has('products')) {
-      console.log(changedProperties);
-    }
+  update_products() {
+    this.update(this.products);
+  }
+
+  show_modal() {
+    this.shadowRoot.querySelector('.modal').style.visibility = 'visible';
+    this.shadowRoot.querySelector('.modal').style.height = '100%';
   }
 
   render() {
@@ -109,31 +122,32 @@ export class Body extends LitElement {
           promt="Agrega un item"
           titulo="Muebles"
           .items=${this.products}
+          @my-event="${() => this.update_products()}"
       >
       </list-item-lit>
     </section>
     <header class="header">
       <h1>Falapley</h1>
-      <button type="button"><img src="img/settings.png" alt="settings"></button>
+      <button @click=${() => this.show_modal()} type="button"><img src="img/settings.png" alt="settings"></button>
     </header>
     <section class="bg-img">
       <h2 class="max-width">Encuentra el mueble que andas buscando</h2>
     </section>
     <main class="products">
       <h2>Nuestros Productos</h2>
-      <div class="products">
+      <div class="products-list">
         ${repeat(
           this.products,
           (product) => product,
           (product, index) => 
           html`
           <sell-item-lit
-              nombre="Berger Dante Cuero Combinado"
-              precio="299.990"
-              precio_real="599.990"
-              calificacion="4.6"
-              descuento="50"
-              img="https://falabella.scene7.com/is/image/Falabella/14610790_1?wid=1500&hei=1500&qlt=70"
+              nombre="${product.nombre}"
+              precio="${product.precio}"
+              precio_real="${product.precio_real}"
+              calificacion="${product.calificacion}"
+              descuento="${product.descuento}"
+              img="${product.img}"
           >`
         )}
       </div>

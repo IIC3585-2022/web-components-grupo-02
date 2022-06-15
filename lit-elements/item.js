@@ -32,7 +32,7 @@ export class Item extends LitElement {
         display: flex;
         flex-direction: column;
         border-radius: 2rem;
-        max-width: 10rem;
+        max-width: 14rem;
         cursor: pointer;
     }
     .image-item img {

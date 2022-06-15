@@ -89,23 +89,25 @@ export class List extends LitElement {
   firstUpdated() {
     const min = 10000;
     const max = 900000;
-    const real_price = Math.floor(Math.random() * (max - min)) + min;
-    const price = Math.floor(Math.random() * (real_price - min)) + min;
-    const calification = Math.floor(Math.random() * (5 - 1)) + 1;
-    const discount = 100 - Math.floor((price * 100/ real_price)) ;
     [this.item1, this.item2, this.item3].forEach(item => {
       axios.get(`https://api.pexels.com/v1/search?query=${item}`)
       .then(response => {
+        const real_price = Math.floor(Math.random() * (max - min)) + min;
+        const price = Math.floor(Math.random() * (real_price - min)) + min;
+        const calification = Math.floor(Math.random() * (5 - 1)) + 1;
+        const discount = 100 - Math.floor((price * 100/ real_price)) ;
         const data = {
           nombre: item,
           precio: price,
           precio_real: real_price,
           calificacion: calification,
           descuento: discount,
-          img: response.data.photos[1].url
+          img: response.data.photos[1].src.original
         }
         this.items.push(data);
         this.update(this.items);
+        let event = new CustomEvent('my-event', data);
+        this.dispatchEvent(event);
       })
       .catch(e => {
           // Podemos mostrar los errores en la consola
@@ -147,8 +149,31 @@ export class List extends LitElement {
         alert("No puedes dejar el campo vacío");
     }
     else {
-        this.items.push(this.value);
+      const min = 10000;
+      const max = 900000;
+      axios.get(`https://api.pexels.com/v1/search?query=${this.value}`)
+      .then(response => {
+        const real_price = Math.floor(Math.random() * (max - min)) + min;
+        const price = Math.floor(Math.random() * (real_price - min)) + min;
+        const calification = Math.floor(Math.random() * (5 - 1)) + 1;
+        const discount = 100 - Math.floor((price * 100/ real_price)) ;
+        const data = {
+          nombre: this.value,
+          precio: price,
+          precio_real: real_price,
+          calificacion: calification,
+          descuento: discount,
+          img: response.data.photos[0].src.original
+        }
+        this.items.push(data);
         this.update(this.items);
+        let event = new CustomEvent('my-event', data);
+        this.dispatchEvent(event);
+      })
+      .catch(e => {
+          // Podemos mostrar los errores en la consola
+          console.log(e);
+      })
     }
   }
   onChange(e){
