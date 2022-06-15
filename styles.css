@@ -1,0 +1,17 @@
+html {
+box-sizing: border-box;
+font-size: 62.5%; /* 1REM = 10px */
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+body {
+    font-size: 1.6rem;
+    line-height: 1.5;
+    margin: 0;
+}
+img { /* img responsive */
+    max-width: 100%; /* Para que solo ocupe el ancho del contenedor */
+    display: block; /* Para que no quede espacio debajo de la imagen */
+    height: auto;
+}

@@ -14,6 +14,7 @@
     "build": "vite build"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "lit": "^2.0.2"
   },
   "devDependencies": {

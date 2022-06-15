@@ -5,10 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WEB COMPONENT</title>
+    <link rel="stylesheet" href="styles.css">
     <script src="./web_components/item.js"></script>
     <script src="./web_components/list.js"></script>
     <script type="module" src="lit-elements/item.js"></script>
-    <script type="module" src="lit-elements/list.js"></script>
+    <script type="module" src="lit-elements/list-2.js"></script>
+    <script type="module" src="lit-elements/body.js"></script>
 </head>
 <body>
     <!-- WEBCOMPONENT -->
@@ -30,7 +32,7 @@
     >
     </list-item-component> -->
     <!-- LIT -->
-    <sell-item-lit
+    <!-- <sell-item-lit
         nombre="Berger Dante Cuero Combinado"
         precio="299.990"
         precio_real="599.990"
@@ -38,14 +40,17 @@
         descuento="50"
         img="https://falabella.scene7.com/is/image/Falabella/14610790_1?wid=1500&hei=1500&qlt=70"
     >
-    </sell-item-lit>
+    </sell-item-lit> -->
     <!-- <list-item-lit
         item1="Perro"
         item2="Gato"
         item3="Dinosaurio"
         promt="Agrega un item"
         titulo="Animales"
+        .items=${Products}
     >
     </list-item-lit> -->
+    <body-lit>
+    </body-lit>
 </body>
 </html>
