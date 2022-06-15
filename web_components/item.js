@@ -1,4 +1,4 @@
-class item extends HTMLElement{
+export class Item extends HTMLElement{
     constructor(){
         super();
         this.attachShadow({mode: 'open'});
@@ -135,10 +135,10 @@ class item extends HTMLElement{
                         <p class="descuento">-${this.descuento}%</p>
                     </div>
                 </div>
-                
+
             </div>
-        </div>`; 
+        </div>`;
     }
 }
 
-window.customElements.define('sell-item-component', item);
+// window.customElements.define('sell-item-component', Item);

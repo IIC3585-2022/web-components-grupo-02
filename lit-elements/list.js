@@ -97,7 +97,7 @@ export class List extends LitElement {
         ${repeat(
             this.items,
             (item) => item,
-            (item, index) => 
+            (item, index) =>
             html`
             <div id="${this.pos}" class="item">
                 <p>${item}</p>
@@ -118,7 +118,7 @@ export class List extends LitElement {
   }
 
   add() {
-    if (this.value == "") {
+    if (this.value === "") {
         alert("No puedes dejar el campo vacío");
     }
     else {
@@ -132,4 +132,4 @@ export class List extends LitElement {
   }
 }
 
-window.customElements.define('list-item-lit', List)
+// window.customElements.define('list-item-lit', List)
