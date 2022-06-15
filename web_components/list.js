@@ -42,7 +42,7 @@ class list extends HTMLElement{
         this.shadowRoot.querySelector("input").value = "";
         if (this.name == '') {
             alert("No puedes dejar el campo vacío");
-        } 
+        }
         else {
             this.all_items = this.shadowRoot.querySelector(`.items`);
             // Create div
@@ -58,10 +58,10 @@ class list extends HTMLElement{
             this.delete_button.classList.add("remove-button");
             this.delete_button.innerHTML = `<img src="img/remove.png" alt="imagen eliminar">`;
             this.delete_button.type = "button";
+            const idToDelete = this.delete_button.id;
             // Add the event listener
             this.delete_button.addEventListener('click', evt => {
-                console.log(this.delete_button.id);
-                this.eliminar(this.delete_button.id);
+                this.eliminar(idToDelete);
             });
             // Append elements
             this.div.appendChild(this.p);
@@ -159,9 +159,9 @@ class list extends HTMLElement{
                 <button class="add-button" type="button"><img src="img/add.png" alt="imagen agregar"></button>
             </div>
         </div>`;
-        
+
         this.add_button = this.shadowRoot.querySelector(".add-button");
-        this.add_button .addEventListener('click', evt => {
+        this.add_button.addEventListener('click', evt => {
             this.agregar();
         });
         this.remove_buttons = this.shadowRoot.querySelectorAll(".remove-button");
@@ -171,7 +171,7 @@ class list extends HTMLElement{
             });
         });
     }
-    
+
     disconnectedCallback() {
         this.add_button.removeEventListener("click", this);
     }

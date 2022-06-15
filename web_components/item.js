@@ -135,9 +135,9 @@ class item extends HTMLElement{
                         <p class="descuento">-${this.descuento}%</p>
                     </div>
                 </div>
-                
+
             </div>
-        </div>`; 
+        </div>`;
     }
 }
 
