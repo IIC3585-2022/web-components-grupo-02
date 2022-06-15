@@ -56,7 +56,7 @@ export class Item extends LitElement {
     .precio-items {
         display: flex;
         justify-content: space-around;
-        padding: 0 .5rem;
+        padding: 0 .2rem;
     }
     .precio-items p {
         font-size: 1rem;
