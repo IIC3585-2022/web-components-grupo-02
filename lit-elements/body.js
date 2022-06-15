@@ -111,6 +111,11 @@ export class Body extends LitElement {
     this.shadowRoot.querySelector('.modal').style.height = '100%';
   }
 
+  close_modal() {
+    this.shadowRoot.querySelector('.modal').style.visibility = 'hidden';
+    this.shadowRoot.querySelector('.modal').style.height = '0';
+  }
+
   render() {
     return html`
     <section class="modal">
@@ -122,6 +127,7 @@ export class Body extends LitElement {
           titulo="Muebles"
           .items=${this.products}
           @my-event="${() => this.update_products()}"
+          @close-modal="${() => this.close_modal()}"
       >
       </list-item-lit>
     </section>

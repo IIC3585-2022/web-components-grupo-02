@@ -35,6 +35,10 @@ export class List extends LitElement {
         border: none;
         background: none;
     }
+    .header {
+      display: flex;
+      justify-content: space-between;
+    }
     .items {
         display: flex;
         flex-direction: column;
@@ -117,9 +121,17 @@ export class List extends LitElement {
     });
   }
 
+  close_modal() {
+    let event = new CustomEvent('close-modal');
+      this.dispatchEvent(event);
+  }
+
   render() {
     return html`
-    <h1>${this.titulo}</h1>
+    <div class="header">
+      <h1>${this.titulo}</h1>
+      <button @click=${() => this.close_modal()} class="close-button" type="button"><img src="img/close.png" alt="imagen close"></button>
+    </div>
     <div class="items">
         ${repeat(
             this.items,
