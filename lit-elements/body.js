@@ -31,8 +31,8 @@ export class Body extends LitElement {
       max-width: 60rem;
     }
     .modal {
-      visibility: hidden;
-      height: 0;
+      visibility: visible;
+      height: auto;
     }
     .header {
       display: flex;
@@ -91,6 +91,12 @@ export class Body extends LitElement {
   constructor() {
     super()
     this.products = [];
+  }
+
+  updated(changedProperties) {
+    if (changedProperties.has('products')) {
+      console.log(changedProperties);
+    }
   }
 
   render() {

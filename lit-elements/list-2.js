@@ -76,7 +76,6 @@ export class List extends LitElement {
       item3: { type: String },
       promt: { type: String },
       titulo: { type: String },
-      items: { type: Array },
       value: { type: String },
     }
   }
