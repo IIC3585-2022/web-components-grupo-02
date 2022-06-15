@@ -8,7 +8,7 @@ import axios from 'axios';
  * @slot - This element has a slot
  * @csspart button - The button
  */
-export class List extends LitElement {
+export class ListEcommerce extends LitElement {
   static get styles() {
     return css`
     html {
@@ -195,5 +195,3 @@ export class List extends LitElement {
     this.update(this.value);
   }
 }
-
-window.customElements.define('list-item-lit', List)

@@ -130,5 +130,3 @@ export class Item extends LitElement {
     </div>`
   }
 }
-
-// window.customElements.define('sell-item-lit', Item)

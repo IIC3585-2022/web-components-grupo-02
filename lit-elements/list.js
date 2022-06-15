@@ -131,5 +131,3 @@ export class List extends LitElement {
     this.update(this.value);
   }
 }
-
-// window.customElements.define('list-item-lit', List)

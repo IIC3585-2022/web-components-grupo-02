@@ -119,7 +119,7 @@ export class Body extends LitElement {
   render() {
     return html`
     <section class="modal">
-      <list-item-lit
+      <lit-list-ecommerce
           item1="Furniture"
           item2="Table"
           item3="Chair"
@@ -129,7 +129,7 @@ export class Body extends LitElement {
           @my-event="${() => this.update_products()}"
           @close-modal="${() => this.close_modal()}"
       >
-      </list-item-lit>
+      </lit-list-ecommerce>
     </section>
     <header class="header">
       <h1>Falapley</h1>
@@ -146,19 +146,18 @@ export class Body extends LitElement {
           (product) => product,
           (product, index) => 
           html`
-          <sell-item-lit
+          <lit-item
               nombre="${product.nombre}"
               precio="${product.precio}"
               precio_real="${product.precio_real}"
               calificacion="${product.calificacion}"
               descuento="${product.descuento}"
               img="${product.img}"
-          >`
+          >
+          </lit-item>`
         )}
       </div>
     </main>
     `
   }
 }
-
-window.customElements.define('body-lit', Body)

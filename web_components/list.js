@@ -176,5 +176,3 @@ export class List extends HTMLElement{
         this.add_button.removeEventListener("click", this);
     }
 }
-
-// window.customElements.define('list-item-component', List);
