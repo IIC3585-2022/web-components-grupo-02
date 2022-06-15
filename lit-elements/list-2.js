@@ -142,6 +142,8 @@ export class List extends LitElement {
   delete(pos) {
       this.items.splice(pos, 1);
       this.update(this.items);
+      let event = new CustomEvent('my-event');
+      this.dispatchEvent(event);
   }
 
   add() {
@@ -167,7 +169,7 @@ export class List extends LitElement {
         }
         this.items.push(data);
         this.update(this.items);
-        let event = new CustomEvent('my-event', data);
+        let event = new CustomEvent('my-event');
         this.dispatchEvent(event);
       })
       .catch(e => {
