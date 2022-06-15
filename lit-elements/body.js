@@ -86,7 +86,6 @@ export class Body extends LitElement {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-around;
-      align-items: center;
     }
     `
   }
