@@ -1,5 +1,6 @@
 import { html, css, LitElement } from 'lit';
 import {repeat} from 'lit/directives/repeat.js';
+import axios from 'axios';
 
 /**
  * An example element.
@@ -7,7 +8,7 @@ import {repeat} from 'lit/directives/repeat.js';
  * @slot - This element has a slot
  * @csspart button - The button
  */
-export class List extends LitElement {
+export class ListEcommerce extends LitElement {
   static get styles() {
     return css`
     html {
@@ -33,6 +34,10 @@ export class List extends LitElement {
     button {
         border: none;
         background: none;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
     }
     .items {
         display: flex;
@@ -75,32 +80,66 @@ export class List extends LitElement {
       item3: { type: String },
       promt: { type: String },
       titulo: { type: String },
-      items: { type: Array },
       value: { type: String },
     }
   }
 
   constructor() {
     super()
-    this.items = []
+    // this.items = []
     this.value = "";
   }
 
   firstUpdated() {
-      this.items = [this.item1, this.item2, this.item3];
+    const min = 10000;
+    const max = 900000;
+    [this.item1, this.item2, this.item3].forEach(item => {
+      axios.get(`https://api.pexels.com/v1/search?query=${item}`)
+      .then(response => {
+        const real_price = Math.floor(Math.random() * (max - min)) + min;
+        const price = Math.floor(Math.random() * (real_price - min)) + min;
+        const calification = Math.floor(Math.random() * (5 - 1)) + 1;
+        const discount = 100 - Math.floor((price * 100/ real_price)) ;
+        const data = {
+          nombre: item,
+          precio: price,
+          precio_real: real_price,
+          calificacion: calification,
+          descuento: discount,
+          img: response.data.photos[1].src.original
+        }
+        this.items.push(data);
+        this.update(this.items);
+        let event = new CustomEvent('my-event', data);
+        this.dispatchEvent(event);
+      })
+      .catch(e => {
+          // Podemos mostrar los errores en la consola
+          console.log(e);
+      })
+      
+    });
+  }
+
+  close_modal() {
+    let event = new CustomEvent('close-modal');
+      this.dispatchEvent(event);
   }
 
   render() {
     return html`
-    <h1>${this.titulo}</h1>
+    <div class="header">
+      <h1>${this.titulo}</h1>
+      <button @click=${() => this.close_modal()} class="close-button" type="button"><img src="img/close.png" alt="imagen close"></button>
+    </div>
     <div class="items">
         ${repeat(
             this.items,
             (item) => item,
-            (item, index) =>
+            (item, index) => 
             html`
             <div id="${this.pos}" class="item">
-                <p>${item}</p>
+                <p>${item.nombre}</p>
                 <button @click=${() => this.delete(index)} class="remove-button" type="button"><img src="img/remove.png" alt="imagen eliminar"></button>
             </div>`
           )}
@@ -115,15 +154,40 @@ export class List extends LitElement {
   delete(pos) {
       this.items.splice(pos, 1);
       this.update(this.items);
+      let event = new CustomEvent('my-event');
+      this.dispatchEvent(event);
   }
 
   add() {
-    if (this.value === "") {
+    if (this.value == "") {
         alert("No puedes dejar el campo vacío");
     }
     else {
-        this.items.push(this.value);
+      const min = 10000;
+      const max = 900000;
+      axios.get(`https://api.pexels.com/v1/search?query=${this.value}`)
+      .then(response => {
+        const real_price = Math.floor(Math.random() * (max - min)) + min;
+        const price = Math.floor(Math.random() * (real_price - min)) + min;
+        const calification = Math.floor(Math.random() * (5 - 1)) + 1;
+        const discount = 100 - Math.floor((price * 100/ real_price)) ;
+        const data = {
+          nombre: this.value,
+          precio: price,
+          precio_real: real_price,
+          calificacion: calification,
+          descuento: discount,
+          img: response.data.photos[0].src.original
+        }
+        this.items.push(data);
         this.update(this.items);
+        let event = new CustomEvent('my-event');
+        this.dispatchEvent(event);
+      })
+      .catch(e => {
+          // Podemos mostrar los errores en la consola
+          console.log(e);
+      })
     }
   }
   onChange(e){

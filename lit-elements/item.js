@@ -25,9 +25,6 @@ export class Item extends LitElement {
         display: block; /* Para que no quede espacio debajo de la imagen */
         height: auto;
     }
-    .max-width {
-        max-width: 17rem;
-    }
     :host {
         background-color: #fff;
         border: .1rem solid #e6e6e6;
@@ -35,9 +32,15 @@ export class Item extends LitElement {
         display: flex;
         flex-direction: column;
         border-radius: 2rem;
-        max-width: 17rem;
+        max-width: 14rem;
+        cursor: pointer;
+    }
+    .image-item {
+      flex: 1;
     }
     .image-item img {
+      height: 100%;
+      object-fit: cover;
       border-top-left-radius: 2rem;
       border-top-right-radius: 2rem;
     }
@@ -45,21 +48,22 @@ export class Item extends LitElement {
         border-top: .1rem solid #e6e6e6;
     }
     .text-item > p {
-        font-size: 1.8rem;
+        font-size: 1.2rem;
         text-align: center;
         margin: .8rem 0 0 0;
-        line-height: 1.2;
+        line-height: 1;
     }
     .precio-items {
         display: flex;
         justify-content: space-around;
+        padding: 0 .2rem;
     }
     .precio-items p {
-        font-size: 1.4rem;
+        font-size: 1rem;
         margin: .5rem 0;
     }
     .precio {
-        font-size: 1.6rem;
+        font-size: 1rem;
         color: #389FDF;
     }
     .precio-items span {
@@ -74,11 +78,11 @@ export class Item extends LitElement {
     .raiting {
         display: flex;
         align-items: center;
-        margin-bottom: .5rem;
+        margin-bottom: 1rem;
     }
     .raiting img {
-        width: 2rem;
-        height: 2rem;
+        width: 1.4rem;
+        height: 1.4rem;
         margin-right: .5rem;
     }
     .raiting p {
@@ -126,5 +130,3 @@ export class Item extends LitElement {
     </div>`
   }
 }
-
-// window.customElements.define('sell-item-lit', Item)

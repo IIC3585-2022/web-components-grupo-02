@@ -140,5 +140,3 @@ export class Item extends HTMLElement{
         </div>`;
     }
 }
-
-// window.customElements.define('sell-item-component', Item);
