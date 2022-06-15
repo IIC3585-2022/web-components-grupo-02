@@ -127,4 +127,4 @@ export class Item extends LitElement {
   }
 }
 
-window.customElements.define('sell-item-lit', Item)
+// window.customElements.define('sell-item-lit', Item)

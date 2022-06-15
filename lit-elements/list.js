@@ -132,4 +132,4 @@ export class List extends LitElement {
   }
 }
 
-window.customElements.define('list-item-lit', List)
+// window.customElements.define('list-item-lit', List)

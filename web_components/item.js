@@ -1,4 +1,4 @@
-class item extends HTMLElement{
+export class Item extends HTMLElement{
     constructor(){
         super();
         this.attachShadow({mode: 'open'});
@@ -141,4 +141,4 @@ class item extends HTMLElement{
     }
 }
 
-window.customElements.define('sell-item-component', item);
+// window.customElements.define('sell-item-component', Item);

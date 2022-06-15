@@ -1,4 +1,4 @@
-class list extends HTMLElement{
+export class List extends HTMLElement{
     constructor(){
         super();
         this.attachShadow({mode: 'open'});
@@ -177,4 +177,4 @@ class list extends HTMLElement{
     }
 }
 
-window.customElements.define('list-item-component', list);
+// window.customElements.define('list-item-component', List);
